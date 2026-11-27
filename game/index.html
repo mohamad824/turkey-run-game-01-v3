@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GOBBLE DASH — A Turkey's Great Thanksgiving Escape</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game-wrap">
+  <canvas id="scene"></canvas>
+
+  <!-- In-play HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-top">
+      <div class="hud-box" id="hud-score-box">
+        <div class="hud-label">SCORE</div>
+        <div class="hud-value" id="hud-score">0</div>
+      </div>
+      <div class="hud-box" id="hud-zone-box">
+        <div class="hud-label">ZONE</div>
+        <div class="hud-value" id="hud-zone">FARMYARD</div>
+      </div>
+      <div class="hud-box" id="hud-dist-box">
+        <div class="hud-label">DISTANCE</div>
+        <div class="hud-value"><span id="hud-dist">0</span> m</div>
+      </div>
+      <div class="hud-box" id="hud-speed-box">
+        <div class="hud-label">SPEED</div>
+        <div class="hud-value"><span id="hud-speed">0</span> km/h</div>
+      </div>
+    </div>
+    <div id="hud-lives">
+      <div class="hud-label">FEATHERS</div>
+      <div id="lives-row">
+        <span class="feather on"></span><span class="feather on"></span><span class="feather on"></span>
+      </div>
+    </div>
+    <div id="danger-wrap">
+      <div class="hud-label">FARMER BRAM</div>
+      <div id="danger-bar"><div id="danger-fill"></div><div id="danger-face">B</div></div>
+      <div id="danger-text">He is far behind…</div>
+    </div>
+    <div id="powerup-wrap" class="hidden">
+      <div class="hud-label" id="powerup-name">MAGNET</div>
+      <div id="powerup-bar"><div id="powerup-fill"></div></div>
+    </div>
+    <div id="zone-banner" class="hidden"></div>
+    <div id="toast" class="hidden"></div>
+  </div>
+
+  <!-- Title screen -->
+  <div id="title-screen" class="screen">
+    <div class="title-inner">
+      <div class="title-kicker">THANKSGIVING IS COMING…</div>
+      <h1 class="title-main">GOBBLE<br>DASH</h1>
+      <p class="title-sub">Gus the turkey is on the menu tonight.<br>Run, dodge, and do NOT become dinner!</p>
+      <button id="btn-start" class="big-btn">▶ &nbsp;START THE ESCAPE</button>
+      <div class="title-controls">
+        <div><b>← →</b> or <b>A / D</b> — switch lane</div>
+        <div><b>↑ / W / Space</b> — jump &nbsp;·&nbsp; <b>↓ / S</b> — slide</div>
+        <div><b>Swipe</b> or <b>click a side</b> — steer &nbsp;·&nbsp; <b>P</b> — pause &nbsp;·&nbsp; <b>M</b> — mute</div>
+      </div>
+      <div class="title-goal">Escape <b>2,000 m</b> to freedom. Dodge hay bales, carts, the hot oven and the falling carving knife. Farmer Bram and his dog Biscuit are right behind you!</div>
+    </div>
+  </div>
+
+  <!-- End screen -->
+  <div id="end-screen" class="screen hidden">
+    <div class="title-inner">
+      <div class="title-kicker" id="end-kicker">CAUGHT!</div>
+      <h1 class="title-main" id="end-title">DINNER TIME</h1>
+      <p class="title-sub" id="end-sub">Farmer Bram caught Gus…</p>
+      <div id="end-stats">
+        <div class="end-stat"><div class="hud-label">SCORE</div><div class="hud-value" id="end-score">0</div></div>
+        <div class="end-stat"><div class="hud-label">DISTANCE</div><div class="hud-value"><span id="end-dist">0</span> m</div></div>
+        <div class="end-stat"><div class="hud-label">CORN</div><div class="hud-value" id="end-corn">0</div></div>
+        <div class="end-stat"><div class="hud-label">BEST</div><div class="hud-value" id="end-best">0</div></div>
+      </div>
+      <button id="btn-restart" class="big-btn">↻ &nbsp;RUN AGAIN</button>
+      <div class="title-goal" id="end-tip">Tip: jump the hay bales, slide under the low branches, and never stay in the lane of a falling knife.</div>
+    </div>
+  </div>
+
+  <!-- Pause overlay -->
+  <div id="pause-screen" class="screen hidden">
+    <div class="title-inner">
+      <h1 class="title-main small">PAUSED</h1>
+      <p class="title-sub">Gus is catching his breath…</p>
+      <button id="btn-resume" class="big-btn">▶ &nbsp;KEEP RUNNING</button>
+    </div>
+  </div>
+
+  <div id="flash"></div>
+  <div id="mute-btn" title="Mute (M)">♪</div>
+</div>
+
+<script src="vendor/three.min.js"></script>
+<script src="src/config.js"></script>
+<script src="src/audio.js"></script>
+<script src="src/turkey.js"></script>
+<script src="src/farmer.js"></script>
+<script src="src/scenery.js"></script>
+<script src="src/track.js"></script>
+<script src="src/obstacles.js"></script>
+<script src="src/pickups.js"></script>
+<script src="src/hud.js"></script>
+<script src="src/game.js"></script>
+</body>
+</html>
